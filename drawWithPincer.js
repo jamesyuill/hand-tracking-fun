@@ -73,26 +73,25 @@ function drawKeyLines() {
     let fingTwoDist = p5.Vector.dist(thumb, fingTwo);
     let fingThreeDist = p5.Vector.dist(thumb, fingThree);
     let fingFourDist = p5.Vector.dist(thumb, fingFour);
-    let fingOneandTwoDist = p5.Vector.dist(fingOne, fingTwo);
-    // let fromColor = color('red');
-    // let toColor = color('blue');
-    // let colorchange = lerpColor(fromColor, toColor, thumb.y / 450);
-    circleX = fingOne.x;
-    circleY = fingOne.y;
 
-    //draw
-    if (fingOneandTwoDist > 100) {
+    let fromColor = color('red');
+    let toColor = color('blue');
+    let colorchange = lerpColor(fromColor, toColor, thumb.y / 450);
+    circleX = (thumb.x + fingOne.x) / 2;
+    circleY = (thumb.y + fingOne.y) / 2;
+
+    // fill(colorchange);
+    // ellipse(circleX, circleY, fingOneDist / 2);
+    // textSize(fingOneDist * 1.2);
+    // text('hello', thumb.x, thumb.y);
+
+    if (fingOneDist < 70) {
       history.push({
         circleX,
         circleY,
-        radius: 30,
-        color: 'red',
+        radius: fingOneDist / 2,
+        color: colorchange,
       });
-    }
-
-    //clear screen
-    if (fingOneDist < 30 && fingTwoDist < 30) {
-      history = [];
     }
   }
   for (let i = 0; i < history.length; i++) {
